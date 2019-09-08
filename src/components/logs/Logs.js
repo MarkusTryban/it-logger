@@ -22,7 +22,7 @@ const Logs = () => {
   }
 
   return (
-    <ul className='collection-with-header'>
+    <ul className='collection with-header'>
       <li className='collection-header'>
         <h4 className='center'>Sytem Logs</h4>
       </li>
