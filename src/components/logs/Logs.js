@@ -21,7 +21,18 @@ const Logs = () => {
     return <h4>Loading...</h4>
   }
 
-  return <div></div>
+  return (
+    <ul className='collection-with-header'>
+      <li className='collection-header'>
+        <h4 className='center'>Sytem Logs</h4>
+      </li>
+      {!loading && logs.length === 0 ? (
+        <p className='center'>No logs to show...</p>
+      ) : (
+        logs.map(log => <li>{log.message}</li>)
+      )}
+    </ul>
+  )
 }
 
 export default Logs
