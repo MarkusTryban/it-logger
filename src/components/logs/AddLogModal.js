@@ -22,6 +22,21 @@ const AddLogModal = () => {
             </label>
           </div>
         </div>
+
+        <div className='row'>
+          <div className='input-field'>
+            <select
+              name='tech'
+              value={tech}
+              className='browser-default'
+              onChange={e => setTech(e.target.value)}
+            >
+              <option value='' disabled>
+                Select Technician
+              </option>
+            </select>
+          </div>
+        </div>
       </div>
     </div>
   )
