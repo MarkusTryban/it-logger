@@ -18,7 +18,7 @@ const AddTechModal = () => {
   }
 
   return (
-    <div id='#add-tech-modal' className='modal'>
+    <div id='add-tech-modal' className='modal'>
       <div className='modal-content'>
         <h4>New Technician</h4>
         <div className='row'>
@@ -34,6 +34,7 @@ const AddTechModal = () => {
             </label>
           </div>
         </div>
+
         <div className='row'>
           <div className='input-field'>
             <input
