@@ -13,7 +13,16 @@ const AddLogModal = ({ addLog }) => {
     if (message === '' || tech === '') {
       M.toast({ html: 'Please enter a message and tech' })
     } else {
-      console.log(message, tech, attention)
+      const newLog = {
+        message,
+        attention,
+        tech,
+        date: new Date()
+      }
+
+      addLog(newLog)
+
+      M.toast({ html: `Log added by ${tech}` })
 
       // Clear fields
       setMessage('')
@@ -61,13 +70,14 @@ const AddLogModal = ({ addLog }) => {
         <div className='row'>
           <div className='input-field'>
             <p>
-              <label
-                type='checkbox'
-                className='filled-in'
-                checked={attention}
-                value={attention}
-                onChange={e => setAttention(!attention)}
-              >
+              <label>
+                <input
+                  type='checkbox'
+                  className='filled-in'
+                  checked={attention}
+                  value={attention}
+                  onChange={e => setAttention(!attention)}
+                />
                 <span>Needs Attention</span>
               </label>
             </p>
@@ -85,6 +95,10 @@ const AddLogModal = ({ addLog }) => {
       </div>
     </div>
   )
+}
+
+AddLogModal.propTypes = {
+  addLog: PropTypes.func.isRequired
 }
 
 const modalStyle = {
