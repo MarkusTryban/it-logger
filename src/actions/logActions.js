@@ -1,4 +1,11 @@
-import { GET_LOGS, ADD_LOG, DELETE_LOG, SET_LOADING, LOGS_ERROR } from './types'
+import {
+  GET_LOGS,
+  ADD_LOG,
+  DELETE_LOG,
+  SET_LOADING,
+  LOGS_ERROR,
+  SET_CURRENT
+} from './types'
 
 export const getLogs = () => async dispatch => {
   try {
@@ -61,6 +68,13 @@ export const deleteLog = id => async dispatch => {
       type: LOGS_ERROR,
       payload: err.response.data
     })
+  }
+}
+
+export const setCurrent = log => {
+  return {
+    type: SET_CURRENT,
+    payload: log
   }
 }
 
