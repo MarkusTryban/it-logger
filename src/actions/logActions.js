@@ -4,7 +4,8 @@ import {
   DELETE_LOG,
   SET_LOADING,
   LOGS_ERROR,
-  SET_CURRENT
+  SET_CURRENT,
+  CLEAR_CURRENT
 } from './types'
 
 export const getLogs = () => async dispatch => {
@@ -75,6 +76,12 @@ export const setCurrent = log => {
   return {
     type: SET_CURRENT,
     payload: log
+  }
+}
+
+export const clearCurrent = () => {
+  return {
+    type: CLEAR_CURRENT
   }
 }
 
