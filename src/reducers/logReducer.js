@@ -2,7 +2,10 @@ import {
   GET_LOGS,
   ADD_LOG,
   DELETE_LOG,
+  UPDATE_LOG,
   SET_LOADING,
+  SET_CURRENT,
+  CLEAR_CURRENT,
   LOGS_ERROR
 } from '../actions/types'
 
@@ -32,6 +35,11 @@ export default (state = initialState, action) => {
         ...state,
         logs: state.logs.filter(log => log.id !== action.payload),
         loading: false
+      }
+    case SET_CURRENT:
+      return {
+        ...state,
+        current: action.payload
       }
     case SET_LOADING:
       return {
