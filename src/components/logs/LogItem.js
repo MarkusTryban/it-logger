@@ -7,8 +7,10 @@ import { deleteLog } from '../../actions/logActions'
 import M from 'materialize-css/dist/js/materialize.min.js'
 
 const LogItem = ({ log, deleteLog }) => {
+  const { id, tech, date } = log
+
   const onDelete = () => {
-    deleteLog(log.id)
+    deleteLog(id)
     M.toast({ html: 'Log Deleted' })
   }
 
@@ -25,9 +27,9 @@ const LogItem = ({ log, deleteLog }) => {
         </a>
         <br />
         <span className='grey-text'>
-          <span className='black-text'>ID #{log.id}</span> last updated by{' '}
-          <span className='black-text'>{log.tech}</span> on{' '}
-          <Moment format='MMMM Do YYYY, h:mm:ss a'>{log.date}</Moment>
+          <span className='black-text'>ID #{id}</span> last updated by{' '}
+          <span className='black-text'>{tech}</span> on{' '}
+          <Moment format='MMMM Do YYYY, h:mm:ss a'>{date}</Moment>
         </span>
         <a href='#!' onClick={onDelete} className='secondary-content'>
           <i className='material-icons grey-text'>delete</i>
