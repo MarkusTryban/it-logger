@@ -2,6 +2,7 @@ import {
   GET_LOGS,
   ADD_LOG,
   DELETE_LOG,
+  UPDATE_LOG,
   SET_LOADING,
   LOGS_ERROR,
   SET_CURRENT,
@@ -63,6 +64,32 @@ export const deleteLog = id => async dispatch => {
     dispatch({
       type: DELETE_LOG,
       payload: id
+    })
+  } catch (err) {
+    dispatch({
+      type: LOGS_ERROR,
+      payload: err.response.data
+    })
+  }
+}
+
+export const updateLog = log => async dispatch => {
+  try {
+    setLoading()
+
+    const res = await fetch(`/logs/${log.id}`, {
+      method: 'PUT',
+      body: JSON.stringify(log),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    const data = await res.json
+
+    dispatch({
+      type: UPDATE_LOG,
+      payload: data
     })
   } catch (err) {
     dispatch({
