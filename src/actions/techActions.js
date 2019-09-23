@@ -20,7 +20,7 @@ export const getTechs = () => async dispatch => {
   } catch (err) {
     dispatch({
       type: TECHS_ERROR,
-      payload: err.response.data
+      payload: err.response.statusText
     })
   }
 }
