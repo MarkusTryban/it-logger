@@ -28,7 +28,7 @@ export const addTech = tech => async dispatch => {
   try {
     setLoading()
 
-    const res = await fetch('/tech', {
+    const res = await fetch('/techs', {
       method: 'POST',
       body: JSON.stringify(tech),
       headers: {
