@@ -23,7 +23,8 @@ export default (state = initialState, action) => {
     case ADD_TECH:
       return {
         ...state,
-        techs: [...state.techs, action.payload]
+        techs: [...state.techs, action.payload],
+        loading: false
       }
     case SET_LOADING:
       return {
