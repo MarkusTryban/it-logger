@@ -4,6 +4,7 @@
   "main": "server.js",
   "private": true,
   "dependencies": {
+    "config": "^3.2.4",
     "express": "^4.17.1",
     "materialize-css": "^1.0.0",
     "moment": "^2.24.0",
