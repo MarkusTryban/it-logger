@@ -16,18 +16,11 @@ export const getLogs = () => async dispatch => {
   try {
     setLoading();
 
-    const res = await fetch('/api/logs');
-    const data = await res.json();
+    const res = await axios.get('/api/logs');
 
-    dispatch({
-      type: GET_LOGS,
-      payload: data
-    });
+    dispatch({ type: GET_LOGS, payload: res.data });
   } catch (err) {
-    dispatch({
-      type: LOGS_ERROR,
-      payload: err.response.statusText
-    });
+    dispatch({ type: LOGS_ERROR, payload: err.response.data.message });
   }
 };
 
