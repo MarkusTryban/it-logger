@@ -19,27 +19,18 @@ export const getTechs = () => async dispatch => {
 };
 
 export const addTech = tech => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
   try {
-    setLoading();
+    const res = await axios.post('/api/techs', tech, config);
 
-    const res = await fetch('/api/techs', {
-      method: 'POST',
-      body: JSON.stringify(tech),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-    const data = await res.json();
-
-    dispatch({
-      type: ADD_TECH,
-      payload: data
-    });
+    dispatch({ type: ADD_TECH, payload: res.data });
   } catch (err) {
-    dispatch({
-      type: TECHS_ERROR,
-      payload: err.response.statusText
-    });
+    dispatch({ type: TECHS_ERROR, payload: err.response.data.message });
   }
 };
 
