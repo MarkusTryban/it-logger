@@ -44,4 +44,29 @@ router.post(
   }
 );
 
+router.put('/:id', async (req, res) => {
+  const { message, tech, attention } = req.body;
+
+  const logFields = {};
+  if (message) logFields.message = message;
+  if (tech) logFields.tech = tech;
+  logFields.attention = attention;
+
+  try {
+    let log = await Log.findById(req.params.id);
+
+    if (!log) return res.status(404).json({ msg: 'log not found.' });
+
+    log = await Log.findByIdAndUpdate(
+      req.params.id,
+      { $set: logFields },
+      { new: true }
+    );
+
+    res.json(log);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error.');
+  }
+});
 module.exports = router;
