@@ -1,18 +1,19 @@
-import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
-import LogItem from './LogItem'
-import Preloader from '../layout/Preloader'
-import PropTypes from 'prop-types'
-import { getLogs } from '../../actions/logActions'
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import LogItem from './LogItem';
+import Preloader from '../layout/Preloader';
+import { getLogs } from '../../actions/logActions';
 
+// eslint-disable-next-line no-shadow
 const Logs = ({ log: { logs, loading }, getLogs }) => {
   useEffect(() => {
-    getLogs()
+    getLogs();
     // eslint-disable-next-line
-  }, [])
+  }, []);
 
   if (loading || logs === null) {
-    return <Preloader />
+    return <Preloader />;
   }
 
   return (
@@ -26,19 +27,16 @@ const Logs = ({ log: { logs, loading }, getLogs }) => {
         logs.map(log => <LogItem log={log} key={log.id} />)
       )}
     </ul>
-  )
-}
+  );
+};
 
 Logs.propTypes = {
   log: PropTypes.object.isRequired,
   getLogs: PropTypes.func.isRequired
-}
+};
 
 const mapStateToProps = state => ({
   log: state.log
-})
+});
 
-export default connect(
-  mapStateToProps,
-  { getLogs }
-)(Logs)
+export default connect(mapStateToProps, { getLogs })(Logs);
