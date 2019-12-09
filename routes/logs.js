@@ -69,4 +69,20 @@ router.put('/:id', async (req, res) => {
     res.status(500).send('Server Error.');
   }
 });
+
+router.delete('/:id', async (req, res) => {
+  try {
+    let log = await Log.findById(req.params.id);
+
+    if (!log) return res.status(404).json({ msg: 'Log not found.' });
+
+    log = await Log.findByIdAndRemove(req.params.id);
+
+    res.send('Log Removed.');
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error.');
+  }
+});
+
 module.exports = router;
