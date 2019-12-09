@@ -43,4 +43,19 @@ router.post(
   }
 );
 
+router.delete('/:id', async (req, res) => {
+  try {
+    let tech = await Tech.findById(req.params.id);
+
+    if (!tech) return res.status(404).json({ msg: 'tech not found.' });
+
+    tech = await Tech.findByIdAndRemove(req.params.id);
+
+    res.send('tech Removed.');
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error.');
+  }
+});
+
 module.exports = router;
