@@ -53,19 +53,11 @@ export const deleteLog = id => async dispatch => {
   try {
     setLoading();
 
-    await fetch(`/api/logs/${id}`, {
-      method: 'DELETE'
-    });
+    await axios.delete(`/api/logs/${id}`);
 
-    dispatch({
-      type: DELETE_LOG,
-      payload: id
-    });
+    dispatch({ type: DELETE_LOG, payload: id });
   } catch (err) {
-    dispatch({
-      type: LOGS_ERROR,
-      payload: err.response.statusText
-    });
+    dispatch({ type: LOGS_ERROR, payload: err.response.data.message });
   }
 };
 
