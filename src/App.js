@@ -1,23 +1,22 @@
-import React, { Fragment, useEffect } from 'react'
-import SearchBar from './components/layout/SearchBar'
-import Logs from './components/logs/Logs'
-import AddBtn from './components/layout/AddBtn'
-import AddLogModal from './components/logs/AddLogModal'
-import EditLogModal from './components/logs/EditLogModal'
-import AddTechModal from './components/techs/AddTechModal'
-import TechsListModal from './components/techs/TechListModal'
-import { Provider } from 'react-redux'
-import store from './store'
+import React, { Fragment, useEffect } from 'react';
+import { Provider } from 'react-redux';
+import M from 'materialize-css/dist/js/materialize.min';
+import AddBtn from './components/layout/AddBtn';
+import AddLogModal from './components/logs/AddLogModal';
+import EditLogModal from './components/logs/EditLogModal';
+import AddTechModal from './components/techs/AddTechModal';
+import TechsListModal from './components/techs/TechListModal';
+import store from './store';
 
-import 'materialize-css/dist/css/materialize.min.css'
-import M from 'materialize-css/dist/js/materialize.min.js'
-import './App.css'
+import 'materialize-css/dist/css/materialize.min.css';
+import SearchBar from './components/layout/SearchBar';
+import Logs from './components/logs/Logs';
 
 const App = () => {
   useEffect(() => {
     // Init materialize JS
-    M.AutoInit()
-  })
+    M.AutoInit();
+  });
   return (
     <Provider store={store}>
       <Fragment>
@@ -32,7 +31,7 @@ const App = () => {
         </div>
       </Fragment>
     </Provider>
-  )
-}
+  );
+};
 
-export default App
+export default App;
