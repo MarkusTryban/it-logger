@@ -1,12 +1,16 @@
 const express = require('express');
 
 const router = express.Router();
-const config = require('config');
-
 const Tech = require('../models/Tech');
 
-router.post('/', (req, res) => {
-  res.send('Add a tech');
+router.get('/', async (req, res) => {
+  try {
+    const techs = await Tech.find();
+    res.json(techs);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
 });
 
 module.exports = router;
