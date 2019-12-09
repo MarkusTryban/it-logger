@@ -10,6 +10,8 @@ import {
   CLEAR_CURRENT
 } from './types';
 
+import axios from 'axios';
+
 export const getLogs = () => async dispatch => {
   try {
     setLoading();
@@ -75,28 +77,20 @@ export const deleteLog = id => async dispatch => {
 };
 
 export const updateLog = log => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
   try {
     setLoading();
 
-    const res = await fetch(`/api/logs/${log.id}`, {
-      method: 'PUT',
-      body: JSON.stringify(log),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
+    const res = await axios.put(`/api/logs/${log._id}`, log, config);
 
-    const data = await res.json;
-
-    dispatch({
-      type: UPDATE_LOG,
-      payload: data
-    });
+    dispatch({ type: UPDATE_LOG, payload: res.data });
   } catch (err) {
-    dispatch({
-      type: LOGS_ERROR,
-      payload: err.response.statusText
-    });
+    dispatch({ type: LOGS_ERROR, payload: err.response.data.message });
   }
 };
 
