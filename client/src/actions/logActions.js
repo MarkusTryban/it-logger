@@ -25,27 +25,20 @@ export const getLogs = () => async dispatch => {
 };
 
 export const addLog = log => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
   try {
     setLoading();
 
-    const res = await fetch('/api/logs', {
-      method: 'POST',
-      body: JSON.stringify(log),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-    const data = await res.json();
+    const res = await axios.post('/api/logs', log, config);
 
-    dispatch({
-      type: ADD_LOG,
-      payload: data
-    });
+    dispatch({ type: ADD_LOG, payload: res.data });
   } catch (err) {
-    dispatch({
-      type: LOGS_ERROR,
-      payload: err.response.statusText
-    });
+    dispatch({ type: LOGS_ERROR, payload: err.response.data.message });
   }
 };
 
