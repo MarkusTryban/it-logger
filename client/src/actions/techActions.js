@@ -6,22 +6,15 @@ import {
   TECHS_ERROR
 } from './types';
 
+import axios from 'axios';
+
 export const getTechs = () => async dispatch => {
   try {
-    setLoading();
+    const res = await axios.get('/api/techs');
 
-    const res = await fetch('/api/techs');
-    const data = await res.json();
-
-    dispatch({
-      type: GET_TECHS,
-      payload: data
-    });
+    dispatch({ type: GET_TECHS, payload: res.data });
   } catch (err) {
-    dispatch({
-      type: TECHS_ERROR,
-      payload: err.response.statusText
-    });
+    dispatch({ type: TECHS_ERROR, payload: err.response.data.message });
   }
 };
 
