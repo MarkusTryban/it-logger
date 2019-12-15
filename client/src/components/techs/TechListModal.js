@@ -6,9 +6,9 @@ import { getTechs } from '../../actions/techActions'
 
 const TechListModal = ({ getTechs, tech: { techs, loading } }) => {
   useEffect(() => {
-    getTechs()
+    getTechs();
     // eslint-disable-next-line
-  }, [])
+  }, []);
 
   return (
     <div id='tech-list-modal' className='modal'>
@@ -17,7 +17,7 @@ const TechListModal = ({ getTechs, tech: { techs, loading } }) => {
         <ul className='collection'>
           {!loading &&
             techs !== null &&
-            techs.map(tech => <TechItem tech={tech} key={tech.id} />)}
+            techs.map(tech => <TechItem key={tech._id} tech={tech} />)}
         </ul>
       </div>
     </div>
@@ -26,7 +26,7 @@ const TechListModal = ({ getTechs, tech: { techs, loading } }) => {
 
 TechListModal.propTypes = {
   tech: PropTypes.object.isRequired,
-  getTechs: PropTypes.func.isRequired
+  getTechs: PropTypes.func
 }
 
 const mapStateToProps = state => ({
