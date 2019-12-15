@@ -7,10 +7,10 @@ import { deleteLog, setCurrent } from '../../actions/logActions'
 import M from 'materialize-css/dist/js/materialize.min.js'
 
 const LogItem = ({ log, deleteLog, setCurrent }) => {
-  const { id, tech, date } = log
+  const { _id, attention, message, tech, date } = log
 
   const onDelete = () => {
-    deleteLog(id)
+    deleteLog(_id)
     M.toast({ html: 'Log Deleted' })
   }
 
@@ -20,15 +20,15 @@ const LogItem = ({ log, deleteLog, setCurrent }) => {
         <a
           href='#edit-log-modal'
           className={`modal-trigger ${
-            log.attention ? 'red-text' : 'blue-text'
+            attention ? 'red-text' : 'blue-text'
           }`}
           onClick={() => setCurrent(log)}
         >
-          {log.message}
+          {message}
         </a>
         <br />
         <span className='grey-text'>
-          <span className='black-text'>ID #{id}</span> last updated by{' '}
+          <span className='black-text'>ID #{_id}</span> last updated by{' '}
           <span className='black-text'>{tech}</span> on{' '}
           <Moment format='MMMM Do YYYY, h:mm:ss a'>{date}</Moment>
         </span>
@@ -49,4 +49,4 @@ LogItem.propTypes = {
 export default connect(
   null,
   { deleteLog, setCurrent }
-)(LogItem)
+)(LogItem);
