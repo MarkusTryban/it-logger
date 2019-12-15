@@ -11,7 +11,7 @@ const EditLogModal = ({ current, updateLog }) => {
   const [tech, setTech] = useState('')
 
   useEffect(() => {
-    if (current) {
+    if (current !== null) {
       setMessage(current.message)
       setAttention(current.attention)
       setTech(current.tech)
@@ -23,7 +23,7 @@ const EditLogModal = ({ current, updateLog }) => {
       M.toast({ html: 'Please enter a message and tech' })
     } else {
       const updLog = {
-        id: current.id,
+        _id: current._id,
         message,
         attention,
         tech,
@@ -31,17 +31,18 @@ const EditLogModal = ({ current, updateLog }) => {
       }
 
       updateLog(updLog)
-      M.toast({ html: `Log updated by ${tech}` })
-
       // Clear fields
       setMessage('')
       setTech('')
       setAttention(false)
+
+      M.toast({ html: `Log updated by ${tech}` })
+
     }
   }
 
   return (
-    <div id='edit-log-modal' className='modal' style={modalStyle}>
+    <div id='edit-log-modal' className='modal' style={{modalStyle}}>
       <div className='modal-content'>
         <h4>Enter System Log</h4>
         <div className='row'>
@@ -117,4 +118,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { updateLog }
-)(EditLogModal)
+)(EditLogModal);
