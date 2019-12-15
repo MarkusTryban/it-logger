@@ -6,15 +6,15 @@ import Preloader from '../layout/Preloader';
 import { getLogs } from '../../actions/logActions';
 
 // eslint-disable-next-line no-shadow
-const Logs = ({ log: { logs, loading }, getLogs }) => {
+const Logs = ({ log: { logs, loading, search }, getLogs }) => {
   useEffect(() => {
     getLogs();
     // eslint-disable-next-line
   }, []);
 
   if (loading || logs === null) {
-    return <Preloader />;
-  }
+    return <Preloader />
+  };
 
   return (
     <ul className='collection with-header'>
@@ -24,7 +24,9 @@ const Logs = ({ log: { logs, loading }, getLogs }) => {
       {!loading && logs.length === 0 ? (
         <p className='center'>No logs to show...</p>
       ) : (
-        logs.map(log => <LogItem log={log} key={log.id} />)
+        search !== null ?
+        search.map(log => <LogItem key={log._id} log={log} />) :
+        logs.map(log => <LogItem key={log._id} log={log} />)
       )}
     </ul>
   );
