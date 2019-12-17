@@ -2,6 +2,10 @@
   "name": "it-logger",
   "version": "0.1.0",
   "main": "server.js",
+  "engines": {
+    "node": "12.13.0",
+    "npm": "6.12"
+  },
   "private": true,
   "dependencies": {
     "config": "^3.2.4",
