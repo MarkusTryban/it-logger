@@ -2,7 +2,7 @@ const express = require('express');
 const { check } = require('express-validator');
 
 const router = express.Router();
-const Log = require('../models/log');
+const Log = require('../models/Log');
 
 router.get('/', async (req, res) => {
   try {
