@@ -1,29 +1,29 @@
-import React, { useState } from 'react'
-import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
-import { addTech } from '../../actions/techActions'
-import M from 'materialize-css/dist/js/materialize.min.js'
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { addTech } from '../../actions/techActions';
+import M from 'materialize-css/dist/js/materialize.min.js';
 
 const AddTechModal = ({ addTech }) => {
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
 
   const onSubmit = () => {
     if (firstName === '' || lastName === '') {
-      M.toast({ html: 'Please enter first and last name' })
+      M.toast({ html: 'Please enter first and last name' });
     } else {
       addTech({
         firstName,
         lastName
-      })
+      });
 
-      M.toast({ html: `${firstName} ${lastName} was added as a tech` })
+      M.toast({ html: `${firstName} ${lastName} was added as a tech` });
 
       // Clear fields
-      setFirstName('')
-      setLastName('')
+      setFirstName('');
+      setLastName('');
     }
-  }
+  };
 
   return (
     <div id='add-tech-modal' className='modal'>
@@ -67,14 +67,11 @@ const AddTechModal = ({ addTech }) => {
         </a>
       </div>
     </div>
-  )
-}
+  );
+};
 
 AddTechModal.propTypes = {
   addTech: PropTypes.func.isRequired
-}
+};
 
-export default connect(
-  null,
-  { addTech }
-)(AddTechModal)
+export default connect(null, { addTech })(AddTechModal);
