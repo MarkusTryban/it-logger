@@ -1,6 +1,6 @@
 # IT Logger
 
-> React app to track IT department tasks and issues. Uses JSON-Server as a mock backend.
+> React app to track IT department tasks and issues. Uses Node & MongoDB on the backend.
 
 ## Usage
 
